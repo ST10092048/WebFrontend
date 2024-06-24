@@ -1,0 +1,145 @@
+<app-three-layer-layout>
+    <div class = "container"> All Devices</div> 
+    
+    <div class="container1">
+      <mat-card class="small-card">
+        <mat-card-content>
+          <mat-grid-list cols="2" rowHeight="8:3">
+            <mat-grid-tile>
+              <mat-label class="text">
+                Search Box :
+              </mat-label>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <input type="text" name="search" [(ngModel)]="searchQuery"  placeholder="Search Devices..." />
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <mat-label class="text">
+                Grid View :
+              </mat-label>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <div *ngIf="view; else card">
+                <button class="btn btn-info" (click)="gridView()">
+                  Grid View
+                </button>
+              </div>
+            </mat-grid-tile>
+          </mat-grid-list>
+          <div>
+            <button class="btn2" (click)="filterData()">Search</button>
+          </div>
+          <div>
+            <button class="btn2" (click)="resetSearch()">Reset</button>
+          </div>
+        </mat-card-content>
+      </mat-card>
+        <div class="button-container">
+          <div class="row">
+            <div class="col">
+             
+            </div>
+            <!-- <div class="col-2">
+              <button class="btn btn-info" (click)="generatePdf()">
+                Generate PDF
+              </button>
+            </div> -->
+            <div class="col-1">
+        
+            </div>
+          </div>
+      
+      
+        </div>
+        <div *ngIf="view; else grid">
+          <div class="row">
+            <div class="col" *ngFor="let device of TheDevices">
+              <app-all-device-card (click)="deviceDetails(device.id)" [TheDevices]="device"></app-all-device-card>
+            </div>
+          </div>
+      
+        </div>
+      
+      </div>
+      
+      <ng-template #card>
+        <button class="btn btn-info" (click)="cardView()">
+          Card View
+        </button>
+      </ng-template>
+      
+      <ng-template #grid>
+        <div class="card">
+          <div class="card-body">
+            <button type="button" class="download-btn" (click)="generateCsv()">
+              <img src="assets/logo/icons8-excel-24.png" alt="Download Icon">
+          </button>
+            <table class="table table-hover table-striped">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Operating System</th>
+                  <th>Description</th>
+                  <th>Missing</th>
+                  <th>Outdated</th>
+                  <th>Last Seen</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let device of TheDevices">
+                  <td>{{device.name}}</td>
+                  <td>{{device.os_details.os}}</td>
+                  <td>{{device.description}}</td>
+                  <td>{{device.missing}}</td>
+                  <td>{{device.client_outdated}}</td>
+                  <td>{{device.last_seen_on}}</td>
+                  <td>
+                    <button class="btn1" (click)="deviceDetails(device.id)" type="button"
+                    class="btn btn-outline-info me-2">
+                    <mat-icon aria-label="info icon" fontIcon="info"></mat-icon>
+                  </button>
+                    <!-- <button (click)="missing(device.name)" style="height: 35px;" type="button"
+                      class="btn btn-outline-primary me-2">
+                      <mat-icon aria-label="clear icon" fontIcon="clear"></mat-icon>
+                    </button>
+                    <button (click)="lockScreen(device.name)" style="height: 35px;" type="button"
+                      class="btn btn-outline-danger me-2">
+                      <mat-icon aria-label="lock icon" fontIcon="lock"></mat-icon>
+                    </button>
+                    <button (click)="soundAlarm(device.name)" style="height: 35px;" type="button"
+                      class="btn btn-outline-secondary me-2">
+                      <mat-icon aria-label="alarm icon" fontIcon="alarm"></mat-icon>
+                    </button>
+                    <button (click)="locationActivity(device.name)" style="height: 35px;" type="button"
+                      class="btn btn-outline-secondary me-2">
+                      <mat-icon aria-label="location_on icon" fontIcon="location_on"></mat-icon>
+                    </button> -->
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div>
+              <nav class="page-nav">
+                <ul class="pagination">
+                  <li class="page-item" [class.disabled]="currentPage === 1">
+                    <a class="page-link" (click)="previousPage()">Previous</a>
+                  </li>
+                  <li class="page-item">
+                    <span class="page-link">
+                      Page {{currentPage}} 
+                    </span>
+                  </li>
+                  <li class="page-item ">
+                    <button class="page-link" (click)="nextPage()" [class.disabled]="!hasNextPage">Next</button>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      
+      </ng-template>
+   
+  </app-three-layer-layout>
+  

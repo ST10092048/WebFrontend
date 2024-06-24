@@ -1,0 +1,44 @@
+<app-three-layer-layout>
+    <div class="container">
+   
+        <div class="row align-items-center justify-content-around flex-row-reverse">
+          <div class="col-lg-6">
+            <div class="about-text">
+              <h3 class="dark-color">Report:{{details.reportkey}}</h3>
+              <br>
+              <h4 class="theme-color">{{testData.place_name}}</h4>
+              <h4 class="theme-color">Latitude:{{details.lat}} &amp; Longitude:{{details.lng}}</h4>
+              <p>Wifi:{{details.ssid}}</p>
+              <p>Gateway IP:{{details.gateway_ip}}</p>
+              <p>Name:{{LaptopDetailedReports.name}}</p>
+              <p>Description:{{LaptopDetailedReports.description}}</p>
+              <p>Operating: {{LaptopDetailedReports.os_details.os}} {{LaptopDetailedReports.os_details.os_version_name}} version:{{LaptopDetailedReports.os_details.os_version}}</p>
+              <p>Serial Number:{{LaptopDetailedReports.device_details.hardware[0].data[0].serial_number}}</p>
+              <p>Logged in User:{{LaptopDetailedReports.logged_user}}</p>
+              <p>Class Description:{{LaptopDetailedReports.type}}</p>
+              <br>
+              <p>Report generated on:{{details.created_at}}</p>
+              <div class="btn-bar">
+                <button (click)="generatePDF()" class="px-btn theme-t">Download Report</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-5 text-center">
+            <div>
+              <img src="{{ details.picture_url ? details.picture_url : 'assets/logo/PurpleWire logo.jpeg'}}"
+                  style="width: 400px; height: 250px;"
+                  alt="DeviceScreenShoot" />
+            </div>
+            <div >
+                <img src={{details.screenshot_url}}
+                style="width: 400px;height: 250px;"
+                alt="DeviceScreenShoot" />
+              </div>
+          </div>
+        </div>
+        <div>
+           <div id="map"></div>
+        </div>
+      </div>
+    
+</app-three-layer-layout>

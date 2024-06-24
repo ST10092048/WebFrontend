@@ -1,0 +1,139 @@
+<!-- <app-three-layer-layout>
+    <div class = "container">Home
+
+    </div> 
+    <div class="container1"style="position: relative;
+margin-left: 15px;overflow: hidden;">
+  <section class="section mb-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 col-xl-7 text-center desc">
+          <h2 class="h1 mb-3"></h2>
+          <li style="top: 100px"></li>
+
+         
+        </div>
+      </div>
+    </div> 
+  </section>
+  <section class="section pt-0">
+    <div class="container">
+      <div class="row gy-4 justify-content-center">
+        <div class="col-sm-6 col-md-6 col-lg-4" >
+          <div class="card">
+            <div class="card-body d-flex">
+              <img src="assets/logo/Gauteng logo.png" alt="Image Description"
+                class="icon-lg bg-primary rounded-3 text-white" />
+              <div class="ps-3 col">
+                <h5 class="h6 mb-2">
+                  <a routerLink="/e-gov" class="stretched-link text-reset">Portable Device</a>
+                </h5>
+                <p class="m-0" href="eGov">Laptops Tracking</p>
+                <p class="m-0">.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-6 col-lg-4">
+          <div class="card">
+            <div class="card-body d-flex">
+              <img src="assets/logo/Gauteng logo.png" alt="Image Description"
+                class="icon-lg bg-primary rounded-3 text-white" />
+              <div class="ps-3 col">
+                <h5 class="h6 mb-2">
+                  <a class="stretched-link text-reset" routerLink="/all-tags">Furniture tracking</a>
+                </h5>
+                <p class="m-0">Tables,Chairs,whiteboard</p>
+                <p class="m-0">Water features</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-6 col-lg-4">
+          <div class="card">
+            <div class="card-body d-flex">
+              <img src="assets/logo/Gauteng logo.png" alt="Image Description"
+                class="icon-lg bg-primary rounded-3 text-white" />
+              <div class="ps-3 col">
+                <h5 class="h6 mb-2">
+                  <a class="stretched-link text-reset" routerLink="/administration" >Administration</a>
+                </h5>
+                <p class="m-0">Configuration</p>
+                <p class="m-0">monitors and servers</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+</app-three-layer-layout> -->
+  
+  <app-two-layer-layout>
+    <div class="layout" fxFill fxLayout="row"  fxLayoutAlign="space-between center">
+      <div fxLayout="column" fxFlex="33"> 
+        <mat-card>
+          <mat-card-content>
+           <div fxLayout="row">
+            <div fxLayout="column" fxFlex="70">
+              <h2 class="h6 mb-2">
+                <a routerLink="/e-gov" class="stretched-link text-reset">Portable Device</a>
+              </h2>
+              <p class="m-0" href="eGov">Laptop Tracking</p>
+              <p class="m-0" href="eGov">Location monitoring</p>
+            </div>
+            <div fxLayout="column" fxFlex="30">
+              <img src="assets/logo/Gauteng logo.png" alt="Image Description"
+              class="image" />
+            </div>
+           </div> 
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <div fxLayout="column" fxFlex="33">
+        <mat-card>
+          <mat-card-content>
+            <div>
+              <div fxLayout="column" fxFlex="70">
+                <h2 class="h6 mb-2">
+                  <a class="stretched-link text-reset" routerLink="/all-tags">Furniture tracking</a>
+                </h2>
+                <div class="ps-3 col">
+                  <p class="m-0">Office Equipment</p>
+                  <p class="m-0">Office Accessories</p>
+                </div>
+              </div>
+              <div fxLayout="column" fxFlex="30">
+                <img src="assets/logo/Gauteng logo.png" alt="Image Description"
+              class="image" />
+              </div>
+            </div>
+           
+          </mat-card-content>
+        </mat-card>
+        
+      </div>
+      <div fxLayout="column" fxFlex="33">
+        <mat-card>
+          <mat-card-content>
+            <div fxFill fxLayout="row">
+              <div fxLayout="column" fxFlex="70">
+                <div class="ps-3 col">
+                  <h2 class="h6 mb-2">
+                    <a class="stretched-link text-reset" routerLink="/administration" >Administration</a>
+                  </h2>
+                  <p class="m-0">Configuration</p>
+                  <!-- <p class="m-0">monitors and servers</p> -->
+                </div>
+              </div>
+              <div fxLayout="column" fxFlex="30">
+                <img src="assets/logo/Gauteng logo.png" alt="Image Description"
+                  class="image" />
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+</app-two-layer-layout>

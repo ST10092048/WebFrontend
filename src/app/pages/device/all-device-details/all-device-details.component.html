@@ -1,0 +1,72 @@
+<app-three-layer-layout>
+    <div class="container" >
+      <div class="ui-item" >
+        <div class="ui-head">
+          <div class="ui-trans clearfix">
+            <img src="https://media.licdn.com/dms/image/C4D0BAQGyXV-cMgPn-w/company-logo_200_200/0/1657275405833/purple_wire_pty_ltd_logo?e=2147483647&v=beta&t=ifhz1PoMMQGGlcI7cixmxHVdqbfyhltnSzslezBFB10"
+              alt class="img-responsive" />
+  
+            <div class="card1">
+              <div class="card-body">
+                <mat-list>
+                  <h5>Device Name</h5>
+                  <h6>{{details.name}}</h6>
+                  <mat-divider></mat-divider>
+                  <h5>Logged in User</h5>
+                  <h6>{{details.logged_user}}</h6>
+                  <mat-divider></mat-divider>
+                  <h5>Description</h5>
+                  <h6>{{details.description}}</h6>
+                  <mat-divider></mat-divider>
+                  <h5>Type</h5>
+                  <h6>{{details.type}}</h6>
+                  <mat-divider></mat-divider>
+                  <h5>Missing</h5>
+                  <h6>{{details.missing}}</h6>
+                  <mat-divider></mat-divider>
+                  <h5>Device missing reports</h5>
+                  <h6>{{details.reports_details.reports_count}}</h6>
+                  <mat-divider></mat-divider>
+                </mat-list>
+              </div>
+            </div>
+  
+            <div class="card2">
+              <div class="card-body">
+                <mat-list>
+                  <button (click)="missing(details.id)" class="btn btn-outline-light">
+                    Set as missing
+                  </button>
+                  <mat-divider></mat-divider>
+                  <button (click)="lock(details.id)" class="btn btn-outline-light">
+                    Lock screen
+                  </button>
+                  <mat-divider></mat-divider>
+                  <button (click)="alert(details.id)" class="btn btn-outline-light">
+                    Alert Message
+                  </button>
+                  <mat-divider></mat-divider>
+                  <button (click)="alarm(details.id)" class="btn btn-outline-light">
+                    Sound Alarm
+                  </button>
+                  <mat-divider></mat-divider>
+                  <button (click)="hardware()" class="btn btn-outline-light">
+                    Hardware
+                  </button>
+                  <mat-divider></mat-divider>
+                  <button (click)="reports()" class="btn btn-outline-light">
+                    Reports
+                  </button>
+                  <mat-divider></mat-divider>
+                  <button (click)="location(details.id)" class="btn btn-outline-light">
+                    Last Location
+                  </button>
+                </mat-list>
+              </div>
+            </div>
+          </div>
+          <div class="card3"><app-all-device-map></app-all-device-map></div>
+        </div>
+      </div>
+    </div>
+</app-three-layer-layout>
