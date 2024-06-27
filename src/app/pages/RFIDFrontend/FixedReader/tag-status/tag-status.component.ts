@@ -43,7 +43,7 @@ export class TagStatusComponent implements OnInit{
     this.router.navigate(['/lastlocation',name])
   }
   load() {
-    this.api.getApiLaravel('missingTag', {
+    this.api.getApiLaravelFR('missingTag', {
       search: this.search
     }).subscribe((data: any) => {
       this.status = data.data;
@@ -128,7 +128,7 @@ export class TagStatusComponent implements OnInit{
   columnChartOptions = {
     animationEnabled: true,
     title: {
-      text: 'Angular Column Chart in Material UI Tabs',
+      text: 'Tag Statistics',
     },
     data: [
       {
@@ -141,7 +141,7 @@ export class TagStatusComponent implements OnInit{
   pieChartOptions = {
     animationEnabled: true,
     title: {
-      text: 'Angular Pie Chart in Material UI Tabs',
+      text: 'Tag Statistics',
     },
     theme: 'light2',
     data: [
@@ -155,7 +155,7 @@ export class TagStatusComponent implements OnInit{
   lineChartOptions = {
     animationEnabled: true,
     title: {
-      text: 'Angular Line Chart in Material UI Tabs',
+      text: 'Tag Statistics',
     },
     theme: 'light2',
     data: [

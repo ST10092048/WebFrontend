@@ -6,6 +6,9 @@
     position: relative;
     width: 240px;
     }
+    .white-text {
+      color: white;
+    }
     
 
     .ui-head .ui-trans {
@@ -20,7 +23,6 @@
       .card2 {
         padding: 15px;
         flex: 1;
-        background-color: rgba(112, 112, 112, 0);
         color: white;
         border: transparent;
       }
