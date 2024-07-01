@@ -31,20 +31,25 @@ export class UpdateTagComponent implements OnInit{
     this.updateForm = this.formBuilder.group({
       itemConditionId: [''],
       locationId: [''],
-      disposalId:['']
+      disposalId:[null]
     });
   }
   onSubmit() {
-    const formData = this.updateForm.value;
-    this.api.putApiLaravel(`items/${this.tagid}`, formData).subscribe(
-      (data: any) => {
-        console.log('Item updated successfully:', data);
+    if (this.updateForm.valid) { 
+      const formData = this.updateForm.value; 
+      this.api.putApiLaravel(`items/${this.tagid}`, formData).subscribe(response => {
+        console.log(response);
         this.router.navigate(['/all-tags']);
-      },
-      error => {
-        console.error('Error updating item:', error);
+      });
+      console.log(formData); 
+    } else {
+      console.error('Form is invalid', this.updateForm.errors);
+      for (const control in this.updateForm.controls) {
+        if (this.updateForm.controls.hasOwnProperty(control)) {
+          console.error(control, this.updateForm.controls[control].errors);
+        }
       }
-    );
+    }
   }
   
 

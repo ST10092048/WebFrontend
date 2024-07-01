@@ -53,14 +53,18 @@ updateForm!: FormGroup;
   onSubmit() {
     if (this.updateForm.valid) { 
       const formData = this.updateForm.value; 
-      formData.purchaseDate = this.formatDate(formData.purchaseDate);
-      this.api.postLaravel(`AllItems/create`,formData).subscribe(response =>{
+      formData.purchaseDate = this.formatDate(new Date(formData.purchaseDate));
+      this.api.postLaravel('AllItems/create', formData).subscribe(response => {
         console.log(response);
       });
       console.log(formData); 
-  
     } else {
-      console.error('Form is invalid');
+      console.error('Form is invalid', this.updateForm.errors);
+      for (const control in this.updateForm.controls) {
+        if (this.updateForm.controls.hasOwnProperty(control)) {
+          console.error(control, this.updateForm.controls[control].errors);
+        }
+      }
     }
   }
 
