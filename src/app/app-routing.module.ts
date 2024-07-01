@@ -93,7 +93,7 @@ export const routes: Routes = [
     {path:'condition-tag',component:ConditionTagComponent, canActivate: [roleGuard], data: { expectedRole: 'ADMIN' }},
     {path:'brand-tag',component:BrandTagComponent, canActivate: [roleGuard], data: { expectedRole: 'ADMIN' }},
     {path:'createCategory',component:TagCreateDataTableComponent, canActivate: [roleGuard], data: { expectedRole: 'ADMIN' }},
-    {path:'location-tag',component:LocationTagComponent, canActivate: [roleGuard], data: { expectedRole: 1 }},
+    {path:'location-tag',component:LocationTagComponent, canActivate: [roleGuard], data: { expectedRole: 'ADMIN' }},
     {path:'update/:type/:id', component: DataTablesUpdateComponent, canActivate: [roleGuard], data: { expectedRole: 'ADMIN' }},
     {path:'disposal-tag',component:DisposalTagComponent, canActivate: [roleGuard], data: { expectedRole: 'ADMIN' }},
     
