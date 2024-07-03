@@ -122,7 +122,7 @@ export class StackedChartComponent {
       };
       this.barChartData = this.getData();
     }
-  },600);
+  },1000);
   }
 
   getData() {
