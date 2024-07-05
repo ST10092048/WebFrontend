@@ -76,8 +76,28 @@ export class TagLastlocationComponent implements OnInit{
   calculateTotalPages() {
     this.totalPages = Math.ceil(this.totalItems / this.per_page);
   }
-  downloadReport() {
-    throw new Error('Method not implemented.');
+  
+    downloadReport() {
+      const csvData = this.convertToCSV(this.LocationData, this.LocationHeader);
+      const blob = new Blob([csvData], { type: 'text/csv' });
+    
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `Tag_Recent_Locations_${this.search}.csv`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+    }
+    
+    private convertToCSV(data: any[], headers: string[]): string {
+      const csvHeader = headers.join(',') + '\n';
+      const csvData = data.map(item => {
+        return headers.map(key => item[key]).join(',');
+      }).join('\n');
+    
+      return csvHeader + csvData;
     }
   
 }
