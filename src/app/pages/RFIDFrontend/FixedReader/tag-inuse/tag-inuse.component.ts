@@ -34,7 +34,6 @@ downloadReport() {
   this.generateCSV();
   }
 loadItems() {
-  this.search='IN-USE';
   this.api.getApiLaravelFR('InuseTag', {search: this.search}).subscribe((data: any) => {
     this.tagNewReport = data.data;
     this.totalItems = data.pagination.total;
@@ -90,11 +89,6 @@ calculateTotalPages() {
   this.totalPages = Math.ceil(this.totalItems / this.per_page);
 }
 
-executeSearch(searchTerm: string): void {
-  this.search = searchTerm;
-  this.page = 1; 
-  this.loadItems();
-}
 DateSearch() {
   if (this.selectedDate) {
     this.page = 1;
@@ -120,7 +114,13 @@ this.router.navigate(['/tag_area',name])
 padZero(num: number): string {
   return num < 10 ? '0' + num : num.toString();
 }
-resetSearch(): void {
+executeSearch(searchTerm: string): void {
+  this.search = searchTerm;
+  this.page = 1; 
+  this.loadItems();
+}
+resetSearch(searchInput: HTMLInputElement): void {
+  searchInput.value = '';
   this.search = ''; 
   this.page = 1; 
   this.loadItems(); 
