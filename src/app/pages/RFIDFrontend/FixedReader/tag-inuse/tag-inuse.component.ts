@@ -26,13 +26,9 @@ export class TagInuseComponent implements OnInit {
 ngOnInit(): void {
  this.loadItems();
 }
-delete(arg0: any) {
 
-}
 
-downloadReport() {
-  this.generateCSV();
-  }
+
 loadItems() {
   this.api.getApiLaravelFR('InuseTag', {search: this.search}).subscribe((data: any) => {
     this.tagNewReport = data.data;
@@ -42,6 +38,7 @@ loadItems() {
     this.calculateTotalPages();
     const keys = Object.keys(this.tagNewReport[0]);
     this.tagNewHeaders = keys;
+    this.isDataAvailable = this.tagNewReport && this.tagNewReport.length > 0;
     console.log(this.tagNewReport);
   }, error => {
     console.log(error)
@@ -125,32 +122,27 @@ resetSearch(searchInput: HTMLInputElement): void {
   this.page = 1; 
   this.loadItems(); 
 }
-generateCSV(): void {
-  if (!this.csvReport || this.csvReport.length === 0) {
-    console.error('No data available for the CSV report.');
-    return;
-  }
-  const filteredData = this.csvReport.filter((item: any) => {
-    return new Date(item.last_seen).toDateString() === this.selectedDate.toDateString();
-  });
+downloadReport() {
+  const csvData = this.convertToCSV(this.tagNewReport, this.tagNewHeaders);
+  const blob = new Blob([csvData], { type: 'text/csv' });
 
-  if (filteredData.length === 0) {
-    console.error('No data available for the selected date.');
-    return;
-  }
-
-  const keys = Object.keys(filteredData[0]);
-  let csvContent = keys.join(',') + '\n';
-  csvContent += filteredData.map((item: any) => keys.map(key => item[key]).join(',')).join('\n');
-
-  const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8' });
   const url = window.URL.createObjectURL(blob);
-  const link = document.createElement('a');
-  link.href = url;
-  link.setAttribute('download', `GateReport_on_${this.selectedDate.toISOString().slice(0, 10)}.csv`);
-  document.body.appendChild(link);
-  link.click();
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `Tag_IN-USE.csv`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
   window.URL.revokeObjectURL(url);
+}
+
+private convertToCSV(data: any[], headers: string[]): string {
+  const csvHeader = headers.join(',') + '\n';
+  const csvData = data.map(item => {
+    return headers.map(key => item[key]).join(',');
+  }).join('\n');
+
+  return csvHeader + csvData;
 }
 
 }

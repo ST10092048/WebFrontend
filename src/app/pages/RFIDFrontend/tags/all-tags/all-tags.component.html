@@ -21,7 +21,7 @@
           </thead>
           <tbody>
             <tr *ngFor="let tag of allTags">
-                <td>{{ tag.tagid }}</td>
+                <td>{{ tag.name }}</td>
                 <td>{{ tag.itemSerialNumber }}</td>
                 <td>{{ tag.item_type.CategoryName }}</td>
                 <td>{{ tag.itemDescription }}</td>
@@ -32,7 +32,7 @@
                 <td>{{ tag.purchaseDate }}</td>
                 <td>{{ tag.purchasePrice }}</td>
               <td>
-                <button class="btn1" (click)="update(tag.tagid)"type="button"
+                <button class="btn1" (click)="update(tag.name)"type="button"
                   class="btn btn-outline-info me-2">
                   <mat-icon aria-label="info icon" fontIcon="info"></mat-icon>
                 </button>
@@ -40,23 +40,23 @@
             </tr>
           </tbody>
         </table>
-        <div>
-          <!-- <nav class="page-nav">
+        <div class="page">
+          <nav class="page-nav">
             <ul class="pagination">
-              <li class="page-item" [class.disabled]="currentPage === 1">
+              <li class="page-item" [class.disabled]="page===1">
                 <a class="page-link" (click)="previousPage()">Previous</a>
               </li>
               <li class="page-item">
                 <span class="page-link">
-                  Page {{currentPage}} 
+                  Page {{page}} of {{totalPages}}
                 </span>
               </li>
-              <li class="page-item ">
-                <button class="page-link" (click)="nextPage()" [class.disabled]="!hasNextPage">Next</button>
+              <li class="page-item">
+                <a class="page-link" (click)="nextPage()">Next</a>
               </li>
             </ul>
-          </nav> -->
-        </div>
+          </nav>
+      </div>
       </div>
     </div> 
 </app-tag-three-layer-layout>

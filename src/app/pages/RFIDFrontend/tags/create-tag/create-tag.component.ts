@@ -32,7 +32,7 @@ updateForm!: FormGroup;
   }
   Form(): void {
     this.updateForm = this.formBuilder.group({
-      tagid: [null, Validators.required],
+      name: [null, Validators.required],
       itemSerialNumber: [null, Validators.required],
       itemDescription: [null, Validators.required],
       purchaseDate: [null, Validators.required], 

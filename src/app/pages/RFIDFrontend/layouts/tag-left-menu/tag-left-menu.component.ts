@@ -35,17 +35,6 @@ const TREE_DATA: NavNode[] = [
       ,
     ]
   },
-  {
-    name: 'Admin',
-    children: [
-      { name: 'Create Items', route: '/createCategory' },
-      { name: 'Category', route: '/category-tag' },
-      { name: 'Condition', route: '/condition-tag' },
-      { name: 'CLASS_DESCRIPTION', route: '/brand-tag' },
-      { name: 'Location', route: '/location-tag' },
-      { name: 'Disposal', route: '/disposal-tag' }
-    ]
-  },
   { name:'Logout',route:'/logout'}
 ];
 
