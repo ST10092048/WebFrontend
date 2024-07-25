@@ -42,8 +42,22 @@ export class LockComponent {
           unlock_pass: form.value.password
         }
       }
+    
+    const Pasbody = {
+      name: this.data.id,
+      password: form.value.password
+    };
+
+    this._service.postLaravel('devicePasswords', Pasbody).subscribe(
+      response => {
+        console.log('Success!', response);
+      },
+      error => {
+        console.error('Error:', error);
+      }
+    );
   
-      console.log(this.data.id)
+      console.log(Pasbody)
       this._service.putApiKot(`admin/device/${this.data.id}/lock`, body).subscribe(data =>{
          console.log(data);
         this.snackbar.openSnackbar('The Device is locked',data)
