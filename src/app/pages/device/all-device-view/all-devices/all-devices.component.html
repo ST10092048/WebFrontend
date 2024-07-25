@@ -1,7 +1,6 @@
 <app-three-layer-layout>
   <app-progress-bar [isLoading]="isLoading"></app-progress-bar>
     <div class = "container"> All Devices</div> 
-    
     <div class="container1">
       <mat-card class="small-card">
         <mat-card-content>
@@ -32,6 +31,9 @@
           </div>
           <div>
             <button class="btn2" (click)="resetSearch()">Reset</button>
+          </div>
+          <div>
+            <app-laptop-register-link></app-laptop-register-link>
           </div>
         </mat-card-content>
       </mat-card>

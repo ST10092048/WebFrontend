@@ -99,6 +99,7 @@ import { UnauthorizedPageComponent } from './pages/unauthorized-page/unauthorize
 import { UrlService } from './services/url.service';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
+import { LaptopRegisterLinkComponent } from './components/laptop-register-link/laptop-register-link.component';
 
 
 
@@ -169,7 +170,8 @@ import { ProgressBarComponent } from './components/progress-bar/progress-bar.com
     TagLastlocationComponent,
     AccessDialogComponent,
     UnauthorizedPageComponent,
-    ProgressBarComponent
+    ProgressBarComponent,
+    LaptopRegisterLinkComponent
 
   ],
   imports: [

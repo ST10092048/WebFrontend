@@ -8,6 +8,7 @@ import { DeviceHardwareComponent } from '../device-details/device-hardware/devic
 import { AlarmComponent } from '../../deviceActions/alarm/alarm.component';
 import { LockComponent } from '../../deviceActions/lock/lock.component';
 import { AlertComponent } from '../../deviceActions/alert/alert.component';
+import { SnackbarService } from '../../../services/snackbar.service';
 
 @Component({
   selector: 'app-all-device-details',
@@ -26,7 +27,7 @@ export class AllDeviceDetailsComponent implements OnInit{
   constructor(private _service: ApiService,
     private _shared: SharedService,
     private _router: Router,
-    public dialog: MatDialog, private http:HttpClient){}
+    public dialog: MatDialog, private snackbar:SnackbarService){}
 
   ngOnInit(): void {
     this.details = this._shared.getDeviceDetails();
@@ -102,19 +103,21 @@ export class AllDeviceDetailsComponent implements OnInit{
       
       this._service.putApiKot(`admin/device/${id}/missing`, body).subscribe(data =>{
         console.log(data);
+        this.snackbar.openSnackbar('DMissing Activated ',data)
         this.isLoading = false;
       })
 
     }else if (this.details.missing == true) {
       let body = {
-        missing: false,
-        options: {
-          report_frequency: "2"
-        }
+        missing: false
       }
       console.log(body)
-      this._service.putApiKot(`device/${id}/missing`, body)
-      this.isLoading = false;
+      this._service.putApiKot(`device/${id}/missing`, body).subscribe(data =>{
+        this.snackbar.openSnackbar('Missing Deactivated ',data)
+        console.log(data)
+        this.isLoading = false;
+      });
+      
       
     }
   }
