@@ -30,6 +30,7 @@ export class DatabaseReportsComponent implements OnInit{
   loadItems() {
     this.isLoading = true;
     this._service.getApiKot(`report/data`, {page:this.page, page_size: this.page_size }).subscribe((data:any) => {
+      this.isLoading = false;
       this.AllReports = data.reports;
       this.itemCount = data.count;
       this.calculateTotalPages();
@@ -56,8 +57,10 @@ calculateTotalPages() {
   this.totalPages = Math.ceil(this.itemCount / this.page_size);
 }
   reportDetails(device_id: any,reportkey:any) {
+    this.isLoading = true;
     this._service.getApiKot(`reports/${device_id}/${reportkey}`).subscribe((data: any[]) => {
-      this._shared.setReportDetails(data[0])
+      this._shared.setReportDetails(data[0]);
+      this.isLoading = false;
       this._router.navigate(['detailed-report']);
       console.log(data)
     });

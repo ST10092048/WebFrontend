@@ -34,6 +34,7 @@ export class ControlZonesComponent implements OnInit {
     this.service.getApiKot('Zones',{page:page,page_size:this.page_size}).subscribe((data:any)=>{
       this.zones =data;
       this.hasNextPage = data.length === this.page_size;
+      this.isLoading = false;
     },error=>{
       this._snackbar.openSnackbar("Error loading server, please try again later", error);
       this.isLoading = false;

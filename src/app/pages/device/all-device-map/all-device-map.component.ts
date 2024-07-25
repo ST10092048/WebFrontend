@@ -19,6 +19,7 @@ export class AllDeviceMapComponent implements OnInit {
     private _service: ApiService,
     private http: HttpClient
   ) { }
+  isLoading = false;
   map!: mapboxgl.Map;
   id: any;
   lat: any;
@@ -29,6 +30,7 @@ export class AllDeviceMapComponent implements OnInit {
   deviceData: any;
 
   ngOnInit(): void {
+    this.isLoading = true;
     this.mapData = this._shared.getMapData();
 
     console.log(this.mapData);
@@ -63,7 +65,9 @@ export class AllDeviceMapComponent implements OnInit {
         },
         (error) => {
           console.error('Error fetching data:', error);
+          this.isLoading = false;
         }
       );
+      this.isLoading = false;
   }
 }

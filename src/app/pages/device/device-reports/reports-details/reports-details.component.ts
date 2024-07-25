@@ -16,6 +16,7 @@ export class ReportsDetailsComponent implements OnInit {
   constructor(private _service: ApiService,
     private _shared: SharedService,
     public dialog: MatDialog){}
+    isLoading=false;
     details:any;
     geoData:any;
     lat:any;
@@ -61,6 +62,7 @@ export class ReportsDetailsComponent implements OnInit {
    
   }
   async generatePDF() {
+    this.isLoading = true;
 
     // Create a new instance of jsPDF
     const pdf = new jsPDF({
@@ -96,6 +98,7 @@ export class ReportsDetailsComponent implements OnInit {
     pdf.text(infoText, 20, 120);
   
     pdf.save(`${this.details.reportkey}.pdf`);
+    this.isLoading = false;
   }
 
 }
