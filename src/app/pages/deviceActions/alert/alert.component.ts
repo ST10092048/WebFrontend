@@ -12,7 +12,7 @@ export interface DailogData {
   styleUrl: './alert.component.scss'
 })
 export class AlertComponent implements OnInit {
-
+  isLoading = false;
   alertMessageForm = new UntypedFormGroup({});
 
   constructor(private _service: ApiService,private snackbar:SnackbarService,
@@ -30,7 +30,7 @@ export class AlertComponent implements OnInit {
   }
 
   onSubmit(form: UntypedFormGroup){
-
+    this.isLoading = true;
     const body = {
       command: 'start',
       action_name: 'alert',
@@ -44,8 +44,10 @@ export class AlertComponent implements OnInit {
     this._service.putApiKot(`admin/device/${this.data.id}/message`, body).subscribe(data =>{
       // console.log(data);
       this.snackbar.openSnackbar('Message has been activated',data)
+      this.isLoading = false;
     },error=>{
       this.snackbar.openSnackbar('Message has not been activated',error)
+      this.isLoading = false;
     })
     this.dialogRef.close(body)
 

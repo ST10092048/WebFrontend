@@ -16,6 +16,7 @@ import { AutomationsDetailsComponent } from '../automations-details/automations-
   styleUrl: './automations.component.scss'
 })
 export class AutomationsComponent implements OnInit{
+  isLoading = false;
   automations: Automations[] = [];
   totalRecords!: any;
   page: number = 1;
@@ -31,23 +32,29 @@ export class AutomationsComponent implements OnInit{
    this.loadItems(1);
   }
   loadItems(page:number) {
+    this.isLoading = true;
     this.currentPage = page;
     this.service.getApiKot('Automations',{page:page,page_size:this.page_size}).subscribe((data:any)=>{
       this.automations= data;
       this.hasNextPage = data.length === this.page_size;
     },error=>{
       this._snackbar.openSnackbar("Error loading server, please try again later", error);
+      this.isLoading = false;
     });
   }
   nextPage() {
     if (this.hasNextPage) {
+      this.isLoading=true;
       this.loadItems(this.currentPage + 1);
+      this.isLoading = false;
     }
   }
 
   previousPage() {
     if (this.currentPage > 1) {
+      this.isLoading=true;
       this.loadItems(this.currentPage - 1);
+      this.isLoading = false;
     }
   }
   automationDetails(name: string) {

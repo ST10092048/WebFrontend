@@ -11,6 +11,7 @@ import { SnackbarService } from '../../../../services/snackbar.service';
   styleUrl: './database-reports.component.scss'
 })
 export class DatabaseReportsComponent implements OnInit{
+  isLoading = false;
   constructor(private _service: ApiService,
     private _shared: SharedService,
     private _router: Router,
@@ -27,22 +28,28 @@ export class DatabaseReportsComponent implements OnInit{
     this.loadItems();
   }
   loadItems() {
+    this.isLoading = true;
     this._service.getApiKot(`report/data`, {page:this.page, page_size: this.page_size }).subscribe((data:any) => {
       this.AllReports = data.reports;
       this.itemCount = data.count;
       this.calculateTotalPages();
     }, error => {
+      this.isLoading = false;
       this._snackbar.openSnackbar('Server error', error);
     });
   }
   nextPage(){
+    this.isLoading=true;
     this.page++;
     this.loadItems();
+    this.isLoading=false;
 }
 previousPage(){
   if(this.page>1){
+    this.isLoading=true;
     this.page--;
     this.loadItems();
+    this.isLoading=false;
   }
 }
 calculateTotalPages() {

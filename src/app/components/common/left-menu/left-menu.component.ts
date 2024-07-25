@@ -7,12 +7,6 @@ const TREE_DATA: NavNode[] = [
     name: 'Home',
     route: '/assets'
   },
-  {
-    name: 'E-Gov', route: '/e-gov'
-  },
-  {
-    name: 'E-Gov Database', route: '/e-govDatabase' 
-  },
   { name: 'Devices', route: '/all-devices' },
   { name: 'Automations', route: '/automations' },
   { name: 'Control Zone', route: '/control-zones' },

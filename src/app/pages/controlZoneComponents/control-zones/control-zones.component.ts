@@ -13,6 +13,7 @@ import { ApiService } from '../../../services/api.service';
   styleUrl: './control-zones.component.scss'
 })
 export class ControlZonesComponent implements OnInit {
+  isLoading = false;
   ZoneInfo!: any[];
   zones: Zones[] = [];
   totalRecords!: any;
@@ -28,12 +29,14 @@ export class ControlZonesComponent implements OnInit {
     this.loadItems(1);
   }
   loadItems(page:number) {
+    this.isLoading = true;
     this.currentPage = page;
     this.service.getApiKot('Zones',{page:page,page_size:this.page_size}).subscribe((data:any)=>{
       this.zones =data;
       this.hasNextPage = data.length === this.page_size;
     },error=>{
       this._snackbar.openSnackbar("Error loading server, please try again later", error);
+      this.isLoading = false;
     });
   }
   nextPage() {

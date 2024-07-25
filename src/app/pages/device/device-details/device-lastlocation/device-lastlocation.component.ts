@@ -15,9 +15,11 @@ import { id } from '@swimlane/ngx-charts';
 })
 export class DeviceLastlocationComponent implements OnInit {
   constructor(private _snackbar:SnackbarService, private service:ApiService, private _shared: SharedService,){}
+  isLoading = false;
   map!: mapboxgl.Map;
   locations:any[] =[];
   ngOnInit(): void {
+    this.isLoading = true;
     this.locations = this._shared.getlastLocation();
     console.log(this.locations);
     if(navigator.geolocation){
@@ -35,17 +37,20 @@ export class DeviceLastlocationComponent implements OnInit {
             
           const popup = new mapboxgl.Popup({offset:100}).setHTML(`<h5 style="color: black;">${data[0].place_name}</h5>`);
           new mapboxgl.Marker().setLngLat([position.coords.longitude,position.coords.latitude]).setPopup(popup).addTo(this.map)
-            this.addMarkers()
+            this.addMarkers();
+            this.isLoading = false;
            
           },
           (error) => {
         
             console.error('Error fetching data:', error);
+            this.isLoading = false;
           }
         );
           
       },error=>{
         this._snackbar.openSnackbar("Please enable browser location", error.message);
+        this.isLoading = false;
       });
     };
     

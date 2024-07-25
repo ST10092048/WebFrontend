@@ -54,6 +54,7 @@ loadReport(){
     search: this.search
   }).subscribe((data:any)=>{
     this.csvReport = data.data;
+    console.log(this.csvReport)
     this.isDataAvailable = this.csvReport && this.csvReport.length > 0;
   });
 }
@@ -120,7 +121,7 @@ generateCSV(): void {
     return;
   }
   const filteredData = this.csvReport.filter((item: any) => {
-    return new Date(item.last_seen).toDateString() === this.selectedDate.toDateString();
+    return new Date(item.LastSeen).toDateString() === this.selectedDate.toDateString();
   });
 
   if (filteredData.length === 0) {

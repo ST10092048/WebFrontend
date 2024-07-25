@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from '../../../../services/api.service';
+import { th } from 'date-fns/locale';
 
 @Component({
   selector: 'app-rfidgate-current',
@@ -18,16 +19,32 @@ export class RFIDGateCurrentComponent {
   totalPages: any;
   nextPageUrl: any;
   previousPageUrl: any;
+  GateReport: any;
+  GateHeadersReport:any;
   constructor(private api:ApiService, private router:Router){}
 ngOnInit(): void {
  this.loadItems();
+ this.loadReport();
 }
 delete(arg0: any) {
 
 }
+loadReport(){
+  this.api.getApiLaravel('RFIDGateCsv', {
+    search: this.search
+  }).subscribe((data: any) => {
+    this.GateReport = data.data;
+    console.log(this.Gate)
+    this.calculateTotalPages();
+    const keys = Object.keys(this.GateReport[0]);
+    this.GateHeadersReport = keys;
+  }, error => {
+    console.log(error)
+  });
+}
 
 downloadReport() {
-  const csvData = this.convertToCSV(this.Gate, this.GateHeaders);
+  const csvData = this.convertToCSV(this.GateReport, this.GateHeadersReport);
   const blob = new Blob([csvData], { type: 'text/csv' });
 
   const url = window.URL.createObjectURL(blob);

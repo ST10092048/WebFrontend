@@ -12,6 +12,7 @@ import { SnackbarService } from '../../../../services/snackbar.service';
   styleUrl: './reports.component.scss'
 })
 export class ReportsComponent implements OnInit {
+  isLoading=false;
   LaptopReports: any[] = [];
   details: any;
   mover: any
@@ -30,30 +31,39 @@ export class ReportsComponent implements OnInit {
     this.loadItems(1);
   }
   reportDetails(key: any) {
+    this.isLoading=true;
     this._service.getApiKot(`reports/${this.mover.id}/${key}`).subscribe((data: any[]) => {
-      this._shared.setReportDetails(data[0])
+      this._shared.setReportDetails(data[0]);
+      this.isLoading=false;
       this._router.navigate(['detailed-report']);
-      console.log(data)
+      console.log(data);
     });
   }
   loadItems(page:number) {
+    this.isLoading=true;
     this.currentPage = page;
     this._service.getApiKot(`admin/reports/${this.mover.id}`, { page: page, page_size: this.page_size }).subscribe((data: any[]) => {
+      this.isLoading=false;
       this.details = data;
       this.hasNextPage = data.length === this.page_size;
     }, error => {
       this._snackbar.openSnackbar('Server error', error);
+      this.isLoading=false;
     });
   }
   nextPage() {
     if (this.hasNextPage) {
+      this.isLoading=true;
       this.loadItems(this.currentPage + 1);
+      this.isLoading=false;
     }
   }
 
   previousPage() {
     if (this.currentPage > 1) {
+      this.isLoading=true;
       this.loadItems(this.currentPage - 1);
+      this.isLoading=false;
     }
   }
 

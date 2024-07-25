@@ -13,8 +13,7 @@ import { ngxCsv } from 'ngx-csv';
   styleUrl: './all-devices.component.scss'
 })
 export class AllDevicesComponent {
-
-
+  isLoading=false;
   totalRecords!: any;
   page: number = 1;
   searchQuery = '';
@@ -36,24 +35,32 @@ export class AllDevicesComponent {
     this.loadData(1);
   }
   loadData(page: number) {
+    this.isLoading=true;
     this.currentPage = page;
     this.service.getApiKot('all', { page: page, page_size: this.page_size }).subscribe((data: any) => {
       this.TheDevices = data;
       this.hasNextPage = data.length === this.page_size;
       console.log(this.TheDevices);
+      this.isLoading = false;
     }, error => {
+
       this._snackbar.openSnackbar("Error loading server, please try again later", error);
+      this.isLoading=false;
     });
   }
   nextPage() {
     if (this.hasNextPage) {
+      this.isLoading=true;
       this.loadData(this.currentPage + 1);
+      this.isLoading=false;
     }
   }
 
   previousPage() {
     if (this.currentPage > 1) {
+      this.isLoading=true;
       this.loadData(this.currentPage - 1);
+      this.isLoading=false;
     }
   }
 

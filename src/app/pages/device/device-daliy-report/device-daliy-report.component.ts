@@ -8,6 +8,7 @@ import { ApiService } from '../../../services/api.service';
   styleUrl: './device-daliy-report.component.scss'
 })
 export class DeviceDaliyReportComponent {
+  isLoading=false;
   DeviceReportHeaders: any;
   DeviceReport: any;
   tags:any;
@@ -34,18 +35,22 @@ downloadReport() {
   this.generateCSV();
   }
   loadReport(){
+    this.isLoading=true;
     this.api.getApiLaravel('DeviceDaliyReportCsv',{
       search: this.search
     }).subscribe((data:any)=>{
       this.csvReport = data.data;
       console.log(this.csvReport);
       this.isDataAvailable = this.csvReport && this.csvReport.length > 0;
+      this.isLoading=false;
     },error =>{
-      console.log(error);;
+      console.log(error);
+      this.isLoading=false;
     });
   }
   
 loadItems() {
+  this.isLoading=true;
   this.api.getApiLaravel('DeviceDaliyReport', {
     search: this.search
   }).subscribe((data: any) => {
@@ -57,8 +62,10 @@ loadItems() {
     const keys = Object.keys(this.DeviceReport[0]);
     this.DeviceReportHeaders = keys;
     console.log(this.DeviceReport);
+    this.isLoading=false;
   }, error => {
-    console.log(error)
+    console.log(error);
+    this.isLoading=false;
   });
 }
 

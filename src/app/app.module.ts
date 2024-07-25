@@ -97,6 +97,8 @@ import { ButtonModule } from 'primeng/button';
 import { AccessDialogComponent } from './components/access-dialog/access-dialog.component';
 import { UnauthorizedPageComponent } from './pages/unauthorized-page/unauthorized-page.component';
 import { UrlService } from './services/url.service';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
 
 
 
@@ -166,7 +168,8 @@ import { UrlService } from './services/url.service';
     TagInuseComponent,
     TagLastlocationComponent,
     AccessDialogComponent,
-    UnauthorizedPageComponent
+    UnauthorizedPageComponent,
+    ProgressBarComponent
 
   ],
   imports: [
@@ -193,6 +196,7 @@ import { UrlService } from './services/url.service';
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
+    MatProgressBarModule,
     AngularPaginatorModule,
     BrowserAnimationsModule,
     NgxChartsModule,

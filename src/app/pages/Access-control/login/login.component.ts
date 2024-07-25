@@ -11,6 +11,7 @@ import { RoleService } from '../../../services/role.service';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
+  isLoading= false;
   constructor(private authservice: AuthService, 
     private _router: Router, 
     private _snackbar: SnackbarService,
@@ -22,6 +23,7 @@ export class LoginComponent {
 
 
       onSubmit() {
+        this.isLoading =true;
 
         if (this.form.invalid) {
           return;
@@ -33,9 +35,10 @@ export class LoginComponent {
             // this.handleResponse(response)
             this._snackbar.openSnackbar("Login successful...", response)
             this._router.navigate(['/assets']);
-            
+            this.isLoading = false;
           },error =>{
             this._snackbar.openSnackbar("Wrong Username or Password...", error)
+            this.isLoading = false;
           }
         )
       }
