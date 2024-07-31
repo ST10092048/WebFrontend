@@ -139,10 +139,10 @@ export class CreateZoneComponent implements OnInit{
           this.notifications[0].when_out = data.when_out !== undefined ? data.when_out : 'off';
         }
       }
-      
+
 
     });
-    
+
 
   }
 
@@ -182,14 +182,14 @@ export class CreateZoneComponent implements OnInit{
     const rowIndex = this.devices.findIndex(row => row.device_id === device_id[0].id);
 
   if (rowIndex !== -1) {
- 
+
     const isSelected = this.selectedRows.includes(device_id);
 
     if (isSelected) {
-      
+
       this.selectedRows = this.selectedRows.filter(id => id !== device_id);
     } else {
-      
+
       this.selectedRows.push(device_id);
     }
   } else {
@@ -217,7 +217,7 @@ export class CreateZoneComponent implements OnInit{
       }
     }
     this.radius = userRadius;
-    
+
   }
   addRadius(coordinates:mapboxgl.LngLat){
     const options ={
@@ -232,7 +232,7 @@ export class CreateZoneComponent implements OnInit{
               "features": [{
                   "type": "Feature",
                   "properties": {
-                   
+
                   },
                   "geometry": {
                       "type": "Point",
@@ -256,7 +256,7 @@ export class CreateZoneComponent implements OnInit{
         },
         "circle-opacity":0.5
         },
-        
+
         });
 
         if(this.map.getSource('radius')){
@@ -270,7 +270,7 @@ export class CreateZoneComponent implements OnInit{
               "features": [{
                   "type": "Feature",
                   "properties": {
-                   
+
                   },
                   "geometry": {
                       "type": "Point",
@@ -279,7 +279,7 @@ export class CreateZoneComponent implements OnInit{
               }]
           }
         });
-      
+
         this.map.addLayer({
           id: 'radius',
           type: 'circle',
@@ -295,14 +295,14 @@ export class CreateZoneComponent implements OnInit{
             'circle-stroke-color': '#007BFF'
           }
         });
-      
+
         this.map.setPaintProperty('radius', 'circle-radius', 10);
-      
+
         this.map.easeTo({
           center: coordinates.toArray() as [number, number],
           duration: options.duration
         });
-      
+
         setTimeout(() => {
           this.map.setPaintProperty('radius', 'circle-radius', this.radius*50);
         }, 100);

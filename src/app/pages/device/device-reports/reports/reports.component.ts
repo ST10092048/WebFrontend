@@ -16,7 +16,7 @@ export class ReportsComponent implements OnInit {
   LaptopReports: any[] = [];
   details: any;
   mover: any
-  currentPage:number = 1; 
+  currentPage:number = 1;
   hasNextPage = true;
   page_size: number = 5;
   totalRecords!: any;
@@ -42,7 +42,7 @@ export class ReportsComponent implements OnInit {
   loadItems(page:number) {
     this.isLoading=true;
     this.currentPage = page;
-    this._service.getApiKot(`admin/reports/${this.mover.id}`, { page: page, page_size: this.page_size }).subscribe((data: any[]) => {
+    this._service.getApiKot(`reports/${this.mover.id}`, { page: page, page_size: this.page_size }).subscribe((data: any[]) => {
       this.isLoading=false;
       this.details = data;
       this.hasNextPage = data.length === this.page_size;

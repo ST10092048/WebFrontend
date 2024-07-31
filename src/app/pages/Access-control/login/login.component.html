@@ -11,11 +11,11 @@
               </div>
               <h3 class="h5 mb-0">Welcome back</h3>
               <h4 class="text-muted mt-2 mb-5">
-                Enter your employee number and password to access platform.
+                Enter your Username and Password to access platform.
               </h4>
               <form [formGroup]="form" (ngSubmit)="onSubmit()">
                 <div class="form-group">
-                  <label for="empNumber" style="font-size: 17px">Employee Number</label>
+                  <label for="empNumber" style="font-size: 17px">Username</label>
                   <input type="text" formControlName="empNumber" name="empNumber" placeholder="Employee Number"
                     class="form-control" required minlength="1" />
                 </div>
@@ -28,6 +28,9 @@
                 <button type="submit" class="btn btn-theme" id="submitLogin">
                   Login
                 </button>
+                <div>
+                  <app-laptop-register-link class="btn2"></app-laptop-register-link>
+                </div>
               </form>
             </div>
           </div>

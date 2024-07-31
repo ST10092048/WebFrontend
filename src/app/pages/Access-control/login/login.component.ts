@@ -12,8 +12,8 @@ import { RoleService } from '../../../services/role.service';
 })
 export class LoginComponent {
   isLoading= false;
-  constructor(private authservice: AuthService, 
-    private _router: Router, 
+  constructor(private authservice: AuthService,
+    private _router: Router,
     private _snackbar: SnackbarService,
   private role_service:RoleService) { }
       form = new FormGroup({
@@ -26,9 +26,10 @@ export class LoginComponent {
         this.isLoading =true;
 
         if (this.form.invalid) {
+          this.isLoading = false;
           return;
         }
-    
+
         this.authservice.login(this.form.get('empNumber')?.value, this.form.get('Empassword')?.value).subscribe(
           (response) => {
             console.log(response)
